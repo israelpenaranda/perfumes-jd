@@ -299,61 +299,33 @@ export default function ProductList({
               </Link>
               {product.stock > 0 && (
   <a
-    href={`https://api.whatsapp.com/send?phone=584247080130&text=${encodeURIComponent(
-      `Hola.
-
-Me interesa este perfume:
+  href={`https://api.whatsapp.com/send?phone=584247080130&text=${encodeURIComponent(
+`Hola, me interesa este perfume.
 
 Nombre: ${product.nombre}
-
-<div
-  style={{
-    marginTop: "10px",
-    marginBottom: "10px",
-    fontWeight: "bold",
-  }}
->
-  {product.stock > 5 && (
-    <span style={{ color: "green" }}>
-      🟢 Disponible
-    </span>
-  )}
-
-  {product.stock > 0 && product.stock <= 5 && (
-    <span style={{ color: "orange" }}>
-      🟡 Últimas {product.stock} unidades
-    </span>
-  )}
-
-  {product.stock === 0 && (
-    <span style={{ color: "red" }}>
-      🔴 Agotado
-    </span>
-  )}
-</div>
-
 Marca: ${product.marca}
+Categoría: ${product.categoria}
 Precio: $${product.precio}
 ML: ${product.ml}
 
 ¿Está disponible?`
-    )}`}
-    target="_blank"
-    style={{
-      display: "block",
-      width: "100%",
-      marginTop: "12px",
-      padding: "14px",
-      borderRadius: "12px",
-      background: "#25D366",
-      color: "white",
-      textAlign: "center",
-      textDecoration: "none",
-      fontWeight: "bold",
-    }}
-  >
-    📲 Consultar por WhatsApp
-  </a>
+  )}`}
+  target="_blank"
+  style={{
+    display: "block",
+    width: "100%",
+    marginTop: "12px",
+    padding: "14px",
+    borderRadius: "12px",
+    background: "#25D366",
+    color: "white",
+    textAlign: "center",
+    textDecoration: "none",
+    fontWeight: "bold",
+  }}
+>
+  📲 Consultar por WhatsApp
+</a>
 )}
             </div>
           </div>
