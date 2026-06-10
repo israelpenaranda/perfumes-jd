@@ -12,7 +12,7 @@ export default async function Home() {
     <main
       style={{
         minHeight: "100vh",
-        padding: "40px",
+        padding: "20px 15px",
         background:
           "linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)",
       }}
@@ -21,6 +21,10 @@ export default async function Home() {
         style={{
           textAlign: "center",
           marginBottom: "60px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <Image
@@ -29,16 +33,20 @@ export default async function Home() {
           width={180}
           height={180}
           style={{
+            display: "block",
+            margin: "0 auto",
             borderRadius: "50%",
-            boxShadow: "0 15px 40px rgba(255,255,255,0.15)",
+            boxShadow:
+              "0 15px 40px rgba(255,255,255,0.15)",
           }}
         />
 
         <h1
           style={{
             color: "white",
-            fontSize: "4rem",
+            fontSize: "clamp(2.5rem, 8vw, 4rem)",
             marginTop: "20px",
+            marginBottom: "10px",
           }}
         >
           Perfumes JD
@@ -47,7 +55,9 @@ export default async function Home() {
         <p
           style={{
             color: "#cbd5e1",
-            fontSize: "1.2rem",
+            fontSize: "clamp(1rem, 3vw, 1.2rem)",
+            maxWidth: "600px",
+            margin: "0 auto",
           }}
         >
           Fragancias originales para hombres y mujeres
