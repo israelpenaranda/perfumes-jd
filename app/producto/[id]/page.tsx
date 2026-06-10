@@ -1,5 +1,61 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { supabase } from "../../lib/supabase";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+
+  const { data: product } = await supabase
+    .from("products")
+    .select("*")
+    .eq("id", Number(id))
+    .single();
+
+  if (!product) {
+    return {
+      title: "Producto no encontrado | Perfumes JD",
+    };
+  }
+
+  return {
+    title: `${product.nombre} | Perfumes JD`,
+    description:
+      product.descripcion?.slice(0, 160) ||
+      `${product.nombre} de ${product.marca}`,
+
+    openGraph: {
+      title: product.nombre,
+      description:
+        product.descripcion?.slice(0, 160) ||
+        `${product.nombre} de ${product.marca}`,
+      images: [
+        {
+          url: product.imagen,
+          width: 1200,
+          height: 630,
+          alt: product.nombre,
+        },
+      ],
+      type: "website",
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: product.nombre,
+      description:
+        product.descripcion?.slice(0, 160) ||
+        `${product.nombre} de ${product.marca}`,
+      images: [product.imagen],
+    },
+  };
+}
 
 export default async function ProductPage({
   params,
@@ -32,7 +88,7 @@ export default async function ProductPage({
     );
   }
 
-  const telefono = "584247080130"; // Cambia por tu número
+  const telefono = "584247080130";
 
   const mensaje = encodeURIComponent(
     `Hola, me interesa el perfume ${product.nombre}`
@@ -57,8 +113,7 @@ export default async function ProductPage({
           boxShadow: "0 20px 50px rgba(0,0,0,.3)",
         }}
       >
-       <div className="product-detail">
-          {/* Imagen */}
+        <div className="product-detail">
           <div
             style={{
               display: "flex",
@@ -81,7 +136,6 @@ export default async function ProductPage({
             />
           </div>
 
-          {/* Información */}
           <div>
             <h1
               style={{
@@ -93,21 +147,11 @@ export default async function ProductPage({
               {product.nombre}
             </h1>
 
-            <p
-              style={{
-                fontSize: "1.2rem",
-                marginBottom: "10px",
-              }}
-            >
+            <p>
               <strong>Marca:</strong> {product.marca}
             </p>
 
-            <p
-              style={{
-                fontSize: "1.2rem",
-                marginBottom: "10px",
-              }}
-            >
+            <p>
               <strong>Categoría:</strong> {product.categoria}
             </p>
 
@@ -123,21 +167,11 @@ export default async function ProductPage({
               ${product.precio}
             </div>
 
-            <p
-              style={{
-                fontSize: "1.1rem",
-                marginBottom: "10px",
-              }}
-            >
+            <p>
               <strong>ML:</strong> {product.ml}
             </p>
 
-            <p
-              style={{
-                fontSize: "1.1rem",
-                marginBottom: "20px",
-              }}
-            >
+            <p>
               <strong>Stock:</strong> {product.stock}
             </p>
 
