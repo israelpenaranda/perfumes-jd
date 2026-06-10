@@ -1,6 +1,5 @@
 import CartButton from "./components/CartButton";
 import ProductList from "./components/ProductList";
-import Image from "next/image";
 import { supabase } from "./lib/supabase";
 
 export default async function Home() {
@@ -18,35 +17,50 @@ export default async function Home() {
           "linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#334155 100%)",
       }}
     >
+      {/* Logo Premium */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "30px",
+          marginTop: "20px",
+        }}
+      >
+        <div
+          style={{
+            padding: "8px",
+            borderRadius: "35px",
+            background:
+              "linear-gradient(135deg,#d4af37,#f5d67b,#d4af37)",
+            boxShadow:
+              "0 0 25px rgba(212,175,55,.5), 0 0 60px rgba(212,175,55,.2)",
+          }}
+        >
+          <img
+            src="/logo/jd-logo.jpg"
+            alt="Perfumes JD"
+            style={{
+              width: "300px",
+              maxWidth: "90vw",
+              height: "160px",
+              objectFit: "cover",
+              borderRadius: "28px",
+              display: "block",
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Título */}
       <div
         style={{
           textAlign: "center",
-          marginBottom: "60px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
         }}
       >
-        <Image
-          src="/logo/jd-logo.jpg"
-          alt="Perfumes JD"
-          width={180}
-          height={180}
-          style={{
-            display: "block",
-            margin: "0 auto",
-            borderRadius: "50%",
-            boxShadow:
-              "0 15px 40px rgba(255,255,255,0.15)",
-          }}
-        />
-
         <h1
           style={{
             color: "white",
             fontSize: "clamp(2.5rem, 8vw, 4rem)",
-            marginTop: "20px",
             marginBottom: "10px",
           }}
         >
@@ -64,16 +78,17 @@ export default async function Home() {
           Fragancias originales para hombres y mujeres
         </p>
 
-<div
-  style={{
-    marginTop: "20px",
-  }}
->
-  <CartButton />
-</div>
+        <div
+          style={{
+            marginTop: "20px",
+            marginBottom: "30px",
+          }}
+        >
+          <CartButton />
+        </div>
+      </div>
 
-    </div>
-
+      {/* Productos */}
       <ProductList products={products || []} />
     </main>
   );
