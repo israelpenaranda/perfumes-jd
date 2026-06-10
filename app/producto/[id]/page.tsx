@@ -70,6 +70,13 @@ export default async function ProductPage({
     .eq("id", Number(id))
     .single();
 
+    const { data: relatedProducts } = await supabase
+  .from("products")
+  .select("*")
+  .eq("categoria", product?.categoria)
+  .neq("id", Number(id))
+  .limit(3);
+
   if (!product) {
     return (
       <main
@@ -228,6 +235,98 @@ export default async function ProductPage({
                 Volver al catálogo
               </button>
             </Link>
+
+{relatedProducts &&
+  relatedProducts.length > 0 && (
+    <div
+      style={{
+        marginTop: "50px",
+      }}
+    >
+      <h2
+        style={{
+          marginBottom: "20px",
+          color: "#111827",
+        }}
+      >
+        También te puede interesar
+      </h2>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns:
+            "repeat(auto-fit,minmax(220px,1fr))",
+          gap: "20px",
+        }}
+      >
+        {relatedProducts.map((item) => (
+          <Link
+            key={item.id}
+            href={`/producto/${item.id}`}
+            style={{
+              textDecoration: "none",
+            }}
+          >
+            <div
+              style={{
+                border: "1px solid #e5e7eb",
+                borderRadius: "15px",
+                overflow: "hidden",
+                background: "white",
+              }}
+            >
+              <div
+                style={{
+                  height: "220px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "15px",
+                  background: "#f8fafc",
+                }}
+              >
+                <img
+                  src={item.imagen}
+                  alt={item.nombre}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
+
+              <div
+                style={{
+                  padding: "15px",
+                }}
+              >
+                <h3
+                  style={{
+                    color: "#111827",
+                    fontSize: "1rem",
+                  }}
+                >
+                  {item.nombre}
+                </h3>
+
+                <p
+                  style={{
+                    color: "#16a34a",
+                    fontWeight: "bold",
+                  }}
+                >
+                  ${item.precio}
+                </p>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+)}
+
           </div>
         </div>
       </div>
