@@ -57,15 +57,7 @@ export default async function ProductPage({
           boxShadow: "0 20px 50px rgba(0,0,0,.3)",
         }}
       >
-        <div
-         style={{
-         display: "grid",
-        gridTemplateColumns:
-         "repeat(auto-fit, minmax(320px, 1fr))",
-         gap: "40px",
-        padding: "40px",
-           }}
-      >
+       <div className="product-detail">
           {/* Imagen */}
           <div
             style={{
