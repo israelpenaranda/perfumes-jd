@@ -2,6 +2,9 @@ import CartButton from "./components/CartButton";
 import ProductList from "./components/ProductList";
 import { supabase } from "./lib/supabase";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function Home() {
   const { data: products } = await supabase
     .from("products")
