@@ -1,3 +1,4 @@
+import CartButton from "./components/CartButton";
 import ProductList from "./components/ProductList";
 import Image from "next/image";
 import { supabase } from "./lib/supabase";
@@ -62,7 +63,16 @@ export default async function Home() {
         >
           Fragancias originales para hombres y mujeres
         </p>
-      </div>
+
+<div
+  style={{
+    marginTop: "20px",
+  }}
+>
+  <CartButton />
+</div>
+
+    </div>
 
       <ProductList products={products || []} />
     </main>

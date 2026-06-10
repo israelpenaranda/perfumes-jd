@@ -1,5 +1,5 @@
 "use client";
-
+import { addToCart } from "../lib/cart";
 import { useState } from "react";
 import Link from "next/link";
 
@@ -297,6 +297,27 @@ export default function ProductList({
               >
                 Ver producto
               </Link>
+<button
+  onClick={() => {
+    addToCart(product);
+    alert("✅ Producto agregado al carrito");
+  }}
+  style={{
+    display: "block",
+    width: "100%",
+    marginTop: "12px",
+    padding: "14px",
+    borderRadius: "12px",
+    border: "none",
+    background: "#f59e0b",
+    color: "white",
+    textAlign: "center",
+    fontWeight: "bold",
+    cursor: "pointer",
+  }}
+>
+  🛒 Agregar al carrito
+</button>
               {product.stock > 0 && (
   <a
   href={`https://api.whatsapp.com/send?phone=584247080130&text=${encodeURIComponent(

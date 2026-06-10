@@ -58,13 +58,14 @@ export default async function ProductPage({
         }}
       >
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "40px",
-            padding: "40px",
-          }}
-        >
+         style={{
+         display: "grid",
+        gridTemplateColumns:
+         "repeat(auto-fit, minmax(320px, 1fr))",
+         gap: "40px",
+        padding: "40px",
+           }}
+      >
           {/* Imagen */}
           <div
             style={{
@@ -73,7 +74,7 @@ export default async function ProductPage({
               alignItems: "center",
               background: "#f8fafc",
               borderRadius: "20px",
-              minHeight: "550px",
+              minHeight: "350px",
               padding: "20px",
             }}
           >
