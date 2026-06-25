@@ -261,24 +261,42 @@ export default function ProductList({
 </p>
 
               <div
-                style={{
-                  marginTop: "15px",
-                  marginBottom: "15px",
-                }}
-              >
-                <span
-                  style={{
-                    background:
-                      "linear-gradient(135deg,#0f172a,#1e293b)",
-                    color: "white",
-                    padding: "10px 18px",
-                    borderRadius: "999px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  ${product.precio}
-                </span>
-              </div>
+  style={{
+    marginTop: "15px",
+    marginBottom: "15px",
+  }}
+>
+  <div
+    style={{
+      background:
+        "linear-gradient(135deg,#0f172a,#1e293b)",
+      color: "white",
+      padding: "10px 18px",
+      borderRadius: "999px",
+      fontWeight: "bold",
+      marginBottom: "8px",
+      display: "inline-block",
+    }}
+  >
+    Precio normal: ${product.precio}
+  </div>
+
+  {product.precio_mayor && (
+    <div
+      style={{
+        background:
+          "linear-gradient(135deg,#16a34a,#22c55e)",
+        color: "white",
+        padding: "10px 18px",
+        borderRadius: "999px",
+        fontWeight: "bold",
+        display: "inline-block",
+      }}
+    >
+      Precio al mayor: ${product.precio_mayor}
+    </div>
+  )}
+</div>
 
               <Link
                 href={`/producto/${product.id}`}

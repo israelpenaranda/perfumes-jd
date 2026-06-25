@@ -13,6 +13,7 @@ export default function AdminPage() {
   const [categoria, setCategoria] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [precio, setPrecio] = useState("");
+  const [precioMayor, setPrecioMayor] = useState("");
   const [ml, setMl] = useState("");
   const [stock, setStock] = useState("");
   const [activo, setActivo] = useState(true);
@@ -62,6 +63,7 @@ export default function AdminPage() {
           categoria,
           descripcion,
           precio: Number(precio),
+          precio_mayor: Number(precioMayor),
           ml: Number(ml),
           stock: Number(stock),
           activo,
@@ -88,6 +90,7 @@ export default function AdminPage() {
     setCategoria(product.categoria || "");
     setDescripcion(product.descripcion || "");
     setPrecio(product.precio?.toString() || "");
+    setPrecioMayor(product.precio_mayor?.toString() || "");
     setMl(product.ml?.toString() || "");
     setStock(product.stock?.toString() || "");
     setActivo(product.activo ?? true);
@@ -106,6 +109,7 @@ export default function AdminPage() {
       categoria,
       descripcion,
       precio: Number(precio),
+      precio_mayor: Number(precioMayor),
       ml: Number(ml),
       stock: Number(stock),
       activo,
@@ -167,6 +171,7 @@ export default function AdminPage() {
     setCategoria("");
     setDescripcion("");
     setPrecio("");
+    setPrecioMayor("");
     setMl("");
     setStock("");
     setActivo(true);
@@ -242,6 +247,13 @@ export default function AdminPage() {
           placeholder="Precio"
           value={precio}
           onChange={(e) => setPrecio(e.target.value)}
+          style={inputStyle}
+        />
+
+         <input
+          placeholder="Precio al mayor"
+          value={precioMayor}
+          onChange={(e) => setPrecioMayor(e.target.value)}
           style={inputStyle}
         />
 
@@ -405,7 +417,9 @@ export default function AdminPage() {
 
             <p>Categoría: {product.categoria}</p>
 
-            <p>Precio: ${product.precio}</p>
+            <p>Precio normal: ${product.precio}</p>
+
+            <p>Precio al mayor: ${product.precio_mayor}</p>
 
             <p>Stock: {product.stock}</p>
 
