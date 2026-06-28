@@ -209,16 +209,38 @@ export default function ProductList({
             }}
           >
             <div
-              style={{
-                width: "100%",
-                height: "450px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                background: "#f8fafc",
-                padding: "20px",
-              }}
-            >
+  style={{
+    width: "100%",
+    height: "450px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#f8fafc",
+    padding: "20px",
+    position: "relative",
+  }}
+>
+              
+              {product.precio_mayor && (
+  <div
+    style={{
+      position: "absolute",
+      top: "15px",
+      right: "15px",
+      background: "#22c55e",
+      color: "white",
+      padding: "8px 14px",
+      borderRadius: "999px",
+      fontWeight: "bold",
+      fontSize: "15px",
+      boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+      zIndex: 10,
+    }}
+  >
+    Precio al mayor ${product.precio_mayor}
+  </div>
+)}
+              
               {product.imagen && (
                 <img
                   src={product.imagen}
@@ -278,24 +300,9 @@ export default function ProductList({
       display: "inline-block",
     }}
   >
-    Precio normal: ${product.precio}
+    ${product.precio}
   </div>
 
-  {product.precio_mayor && (
-    <div
-      style={{
-        background:
-          "linear-gradient(135deg,#16a34a,#22c55e)",
-        color: "white",
-        padding: "10px 18px",
-        borderRadius: "999px",
-        fontWeight: "bold",
-        display: "inline-block",
-      }}
-    >
-      Precio al mayor: ${product.precio_mayor}
-    </div>
-  )}
 </div>
 
               <Link
